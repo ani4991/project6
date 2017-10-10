@@ -1,4 +1,0 @@
-notifications:
-  email:
-    - epierre-jerome@uh.edu
-    - team_member_2_email_address
