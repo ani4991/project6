@@ -2,9 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -14,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Panel;
 
 public class LoginPage extends JFrame {
 
@@ -51,7 +55,6 @@ public class LoginPage extends JFrame {
 			int userPassMail = 0;
 			boolean isUsername = true;
 
-			// System.out.println("Reading lines");
 			while ((line = bufferedReader.readLine()) != null) {
 				if (userPassMail == 0) {
 					theUsers.add(new UserDatabase());
@@ -68,19 +71,13 @@ public class LoginPage extends JFrame {
 					theUsers.get(x).setEmail(line);
 					userPassMail = 0;
 				}
-				// System.out.println(theUsers.get(x).username + " " + theUsers.get(x).password
-				// + " " +theUsers.get(x).email);
+
 				x++;
 			}
 			fileReader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		/*
-		 * for(int i=0; i<theUsers.size(); i++) {
-		 * System.out.println(theUsers.get(i).username + " " + theUsers.get(i).password
-		 * + " " +theUsers.get(i).email); }
-		 */
 	}
 
 	// Create the frame.
@@ -98,7 +95,7 @@ public class LoginPage extends JFrame {
 		contentPane.add(username);
 		username.setColumns(10);
 
-		password = new JTextField();
+		password = new JPasswordField();
 		password.setColumns(10);
 		password.setBounds(172, 116, 116, 22);
 		contentPane.add(password);
@@ -115,6 +112,10 @@ public class LoginPage extends JFrame {
 		lblEventbrite.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblEventbrite.setBounds(172, 13, 102, 42);
 		contentPane.add(lblEventbrite);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(127, 189, 198, 22);
+		contentPane.add(label_1);
 
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addActionListener(new ActionListener() {
@@ -127,11 +128,18 @@ public class LoginPage extends JFrame {
 						loginPage.dispose();
 						eventPage.setVisible(true);
 						break;
+					} else if (i == theUsers.size()-1) {
+						/*JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Failed to log in",
+								JOptionPane.INFORMATION_MESSAGE);
+								*/
+						label_1.setText(String.valueOf("Incorrect username or password"));
+						break;
 					}
 				}
 			}
 		});
 		btnLogIn.setBounds(182, 151, 97, 25);
 		contentPane.add(btnLogIn);
+
 	}
 }
