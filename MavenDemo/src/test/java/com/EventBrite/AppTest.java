@@ -7,7 +7,8 @@ public class AppTest {
 
 	@Test
 	public void test() {
-		System.out.println("Hello World!");
+		String[] args = null;
+		LoginPage.main(args);
 		//fail("Not yet implemented");
 	}
 

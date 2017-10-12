@@ -1,7 +1,10 @@
 package com.EventBrite;
 
 public class App {
-	public String Sample() {
-		return "Hello world!";
+	public void Sample() {
+		LoginPage login = new LoginPage();
+		String[] args = null;
+		LoginPage.main(args);
 	}
+	
 }
