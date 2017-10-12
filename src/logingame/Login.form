@@ -93,6 +93,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
+        <Property name="text" type="java.lang.String" value="jul_296@hotmail.com"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
@@ -147,6 +148,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>

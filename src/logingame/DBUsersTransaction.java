@@ -8,10 +8,9 @@ package logingame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -30,14 +29,14 @@ public class DBUsersTransaction {
         readFile();
     }
 
-    public boolean compareToken(String email, String password) {
+    public Users compareToken(String email, String password) {
         Users user = userMap.get(email);
-        if(user != null){
-            return user.getHashedPassword().equals(password);
-        } else {
-            return false;
+        if (user != null) {
+            if (user.getHashedPassword().equals(password)) {
+                return user;
+            }
         }
-        
+        return null;
     }
 
     private void readFile() {
@@ -45,10 +44,10 @@ public class DBUsersTransaction {
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
             Users user = new Users(bufferedReader);
             userMap.put(user.getEmail(), user);
             System.out.println(user);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ex) {
@@ -61,15 +60,20 @@ public class DBUsersTransaction {
 
     }
 
-    public void writeUser(Users user) {
+    public boolean writeUser(Users user) {
 
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(fileName), "utf-8"))) {
-            writer.write(user.saveFormat());
+        try (Writer writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            if (userMap.get(user.getEmail()) == null) {
+                userMap.put(user.getEmail(), user);
+                writer.write(user.saveFormat());
+                return true;
+            }
+            return false;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        return false;
     }
 }

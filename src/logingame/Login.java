@@ -6,7 +6,6 @@
 package logingame;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Date;
 
 /**
@@ -44,6 +43,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextField1.setText("jul_296@hotmail.com");
         jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +83,12 @@ public class Login extends javax.swing.JFrame {
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
+            }
+        });
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
             }
         });
 
@@ -160,27 +166,42 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginButtonMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        final Register register = new Register(db);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                register.setVisible(true);
             }
         });
+//        this.setEnabled(false);
+//        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-        boolean b = db.compareToken(jTextField1.getText(), jPasswordField1.getText());
+        Users user = db.compareToken(jTextField1.getText(), jPasswordField1.getText());
 
-        if (b) {
+        if (user != null) {
             Warning.setText("Succesfully login!");
             Warning.setForeground(Color.GREEN);
+            Events events = new Events(user);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    events.setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+            this.setVisible(false);
+
         } else {
-            Warning.setText("Invalid email or password");
+            Warning.setText("no matching email and password");
             Warning.setForeground(Color.red);
         }
 
     }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private static DBUsersTransaction db;
 

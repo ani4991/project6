@@ -161,12 +161,12 @@ public class Users {
 
     public String saveFormat() {
         String result = "";
-        result += email;
-        result += firstName;
-        result += lastName;
-        result += hashedPassword;
-        result += birthDate;
-        result += joinDate;
+        result += email + "\r";
+        result += firstName+ "\r";
+        result += lastName+ "\r";
+        result += hashedPassword+ "\r";
+        result += birthDate+ "\r";
+        result += joinDate+ "\r";
 
         return result;
     }
