@@ -8,7 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import static org.junit.Assert.*;
+import org.junit.Test;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -20,14 +21,14 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Panel;
 
-public class LoginPageTest extends JFrame {
+public class LoginPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
 	private JTextField password;
-	EventPageTest eventPage = new EventPageTest();
-	static LoginPageTest loginPage = new LoginPageTest();
-	static ArrayList<UserDatabaseTest> theUsers = new ArrayList<UserDatabaseTest>();
+	EventPage eventPage = new EventPage();
+	static LoginPage loginPage = new LoginPage();
+	static ArrayList<UserDatabase> theUsers = new ArrayList<UserDatabase>();
 
 	// Launch the application.
 
@@ -58,7 +59,7 @@ public class LoginPageTest extends JFrame {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				if (userPassMail == 0) {
-					theUsers.add(new UserDatabaseTest());
+					theUsers.add(new UserDatabase());
 					theUsers.get(x).setUsername(line);
 					userPassMail = 1;
 					continue;
@@ -83,7 +84,7 @@ public class LoginPageTest extends JFrame {
 
 	// Create the frame.
 
-	public LoginPageTest() {
+	public LoginPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -115,7 +116,7 @@ public class LoginPageTest extends JFrame {
 		contentPane.add(lblEventbrite);
 		
 		final JLabel label_1 = new JLabel("");
-		label_1.setBounds(133, 218, 198, 22);
+		label_1.setBounds(127, 189, 198, 22);
 		contentPane.add(label_1);
 
 		JButton btnLogIn = new JButton("Log In");
@@ -139,16 +140,8 @@ public class LoginPageTest extends JFrame {
 				}
 			}
 		});
-		btnLogIn.setBounds(90, 151, 97, 25);
+		btnLogIn.setBounds(182, 151, 97, 25);
 		contentPane.add(btnLogIn);
-		
-		JButton btnCreateAccount = new JButton("Create an Account");
-		btnCreateAccount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCreateAccount.setBounds(199, 151, 148, 25);
-		contentPane.add(btnCreateAccount);
 
 	}
 }
