@@ -115,7 +115,7 @@ public class LoginPageTest extends JFrame {
 		contentPane.add(lblEventbrite);
 		
 		final JLabel label_1 = new JLabel("");
-		label_1.setBounds(127, 189, 198, 22);
+		label_1.setBounds(133, 218, 198, 22);
 		contentPane.add(label_1);
 
 		JButton btnLogIn = new JButton("Log In");
@@ -139,8 +139,16 @@ public class LoginPageTest extends JFrame {
 				}
 			}
 		});
-		btnLogIn.setBounds(182, 151, 97, 25);
+		btnLogIn.setBounds(90, 151, 97, 25);
 		contentPane.add(btnLogIn);
+		
+		JButton btnCreateAccount = new JButton("Create an Account");
+		btnCreateAccount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCreateAccount.setBounds(199, 151, 148, 25);
+		contentPane.add(btnCreateAccount);
 
 	}
 }

@@ -30,7 +30,7 @@ public class EventPageTest extends JFrame {
 	private JTextField txtCity;
 	private JTextField txtState;
 	private JButton btnLookForEvent;
-	
+
 	static ArrayList<EventDatabaseTest> theEvents = new ArrayList<EventDatabaseTest>();
 
 	/**
@@ -40,6 +40,7 @@ public class EventPageTest extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					InitTestData();
 					EventPageTest frame = new EventPageTest();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -53,7 +54,7 @@ public class EventPageTest extends JFrame {
 	 * Create the frame.
 	 */
 	public EventPageTest() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 1000);
 		contentPane = new JPanel();
@@ -112,11 +113,11 @@ public class EventPageTest extends JFrame {
 				txtState.setBounds(956, 108, 116, 22);
 				contentPane.add(txtState);
 				txtState.setColumns(10);
-				
+
 				btnLookForEvent = new JButton("Look For Event");
 				btnLookForEvent.setBounds(1077, 94, 130, 25);
 				contentPane.add(btnLookForEvent);
-				
+
 			}
 		});
 		btnSearch.setBounds(733, 71, 97, 25);
@@ -128,16 +129,16 @@ public class EventPageTest extends JFrame {
 		contentPane.add(lblEvents);
 
 	}
-	
+
 	public static void InitTestData() {
+		int x = 0;
+		int asset = 0;
 		try {
 			File file = new File("Fake Events.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
 			String line;
-			int x = 0;
-			int asset = 0;
 
 			while ((line = bufferedReader.readLine()) != null) {
 				if (asset == 0) {
@@ -151,34 +152,31 @@ public class EventPageTest extends JFrame {
 					asset = 2;
 					continue;
 				}
-				if (asset == 1) {
+				if (asset == 2) {
 					theEvents.get(x).setDay(line);
 					asset = 3;
 					continue;
 				}
-				if (asset == 2) {
+				if (asset == 3) {
 					theEvents.get(x).setCity(line);
 					asset = 4;
 					continue;
 				}
-				if (asset == 2) {
+				if (asset == 4) {
 					theEvents.get(x).setState(line);
 					asset = 5;
 					continue;
 				}
-				if (asset == 2) {
+				if (asset == 5) {
 					theEvents.get(x).setTime(line);
 					asset = 0;
+					x++;
 					continue;
 				}
-
-				x++;
 			}
 			fileReader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 }
-
