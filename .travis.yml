@@ -7,5 +7,4 @@ rvm:
 email:
     - epierre-jerome@uh.edu
     - aravishankar2@uh.edu
-	
-sudo apt-get update
+    - ... (DO NOT INCLUDE MY EMAIL ADDRESS)
