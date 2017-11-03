@@ -46,10 +46,13 @@ public class LoginPageTest extends JFrame {
 		eventPage = new EventPageTest(theEvents);
 		
 		loginPage = new LoginPageTest(theUsers);
+<<<<<<< HEAD
+=======
 		
 		//Check that info has been read in properly
 		//System.out.println(theUsers.get(0).username);
 		//System.out.println(theEvents.get(0).title);
+>>>>>>> d7ca2f021fb616693f80c100ff0b4db9b80cf2aa
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -115,7 +118,11 @@ public class LoginPageTest extends JFrame {
 	}
 	public static ArrayList<UserDatabaseTest> InitUserData() {
 		//System.out.println("Initialising");
+<<<<<<< HEAD
+		theUsers = new ArrayList<UserDatabaseTest>();
+=======
 		ArrayList<UserDatabaseTest> theUsers = new ArrayList<UserDatabaseTest>();
+>>>>>>> d7ca2f021fb616693f80c100ff0b4db9b80cf2aa
 		try {
 			//System.out.println("Trying");
 			
@@ -200,9 +207,7 @@ public class LoginPageTest extends JFrame {
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// System.out.println("There are " + theUsers.size() + " users");
 				for (int i = 0; i < theUsers.size(); i++) {
-					// System.out.println("passing " + username.getText());
 					if (theUsers.get(i).loggingIn(username.getText(), password.getText())) {
 						System.out.println("Successfully logged in with " + theUsers.get(i).username);
 						loginPage.dispose();
@@ -225,7 +230,14 @@ public class LoginPageTest extends JFrame {
 		JButton btnCreateAccount = new JButton("Create an Account");
 		btnCreateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+				System.out.println(theUsers.size());
+				SignUpTest signUp = new SignUpTest(theUsers);
+				signUp.setVisible(true);
+				//loginPage.dispose();
+=======
 
+>>>>>>> d7ca2f021fb616693f80c100ff0b4db9b80cf2aa
 			}
 		});
 
